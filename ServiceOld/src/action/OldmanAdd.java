@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.CommonProc;
 import table.oldman.Oldman;
 import table.oldman.OldmanHandle;
 
@@ -33,42 +32,33 @@ public class OldmanAdd extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		Oldman oldman = new Oldman();
-		CommonProc commonProc = new CommonProc();
 		String temp;
 		
 		temp = request.getParameter("OMid");
 		oldman.setOMid(temp);
 		
 		temp = request.getParameter("OMname");
-		temp = commonProc.getString(temp);
 		oldman.setOMname(temp);
 		
 		temp = request.getParameter("OMsex");
-		temp = commonProc.getString(temp);
 		oldman.setOMsex(temp);
 		
 		temp = request.getParameter("OMidNum");
-		temp = commonProc.getString(temp);
 		oldman.setOMidNum(temp);
 		
 		temp = request.getParameter("OMhome");
-		temp = commonProc.getString(temp);
 		oldman.setOMhome(temp);
 		
 		temp = request.getParameter("OMaddr");
-		temp = commonProc.getString(temp);
 		oldman.setOMaddr(temp);
 		
 		temp = request.getParameter("OMtel1");
-		temp = commonProc.getString(temp);
 		oldman.setOMtel1(temp);
 		
 		temp = request.getParameter("OMtel2");
-		temp = commonProc.getString(temp);
 		oldman.setOMtel2(temp);
 		
 		temp = request.getParameter("OMsort");
-		temp = commonProc.getString(temp);
 		oldman.setOMsort(temp);
 		
 		OldmanHandle oldmanHandle = new OldmanHandle();

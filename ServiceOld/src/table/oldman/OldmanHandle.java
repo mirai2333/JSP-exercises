@@ -67,11 +67,40 @@ public class OldmanHandle {
 		return result;
 	}
 	
-	public Oldman searchOldmanByOMid() {
+	public Oldman searchOldmanByOMid(String OMid) {
+		
+		Oldman oldman;
+		String sql = "SELECT * FROM oldman WHERE OMid='" + OMid + "'";
+		
 		try {
 			conn = DatabaseConnection.getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(arg0);
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				oldman = new Oldman();
+				oldman.setOMid(OMid);
+				oldman.setOMname(rs.getString("OMname"));
+				oldman.setOMidNum(rs.getString("OMidNum"));
+				oldman.setOMsex(rs.getString("OMsex"));
+				oldman.setOMhome(rs.getString("OMhome"));
+				oldman.setOMaddr(rs.getString("OMaddr"));
+				oldman.setOMtel1(rs.getString("OMtel1"));
+				oldman.setOMtel2(rs.getString("OMtel2"));
+				oldman.setOMsort(rs.getString("OMsort"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			oldman = null;
 		}
+		
+		return oldman;
 	}
 }
