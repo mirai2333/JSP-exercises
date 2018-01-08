@@ -33,7 +33,7 @@
     <p>亲人电话：<input type="text" name="OMtel2" id="textfield7" /></p>
     <p>照料性质：
         <input type="radio" name="OMsort" value="收费" id="RadioGroup2_0" checked="checked"/>收费
-        <input type="radio" name="OMsort" value="免费" id="RadioGroup2_1" />单选
+        <input type="radio" name="OMsort" value="免费" id="RadioGroup2_1" />免费
     </p>
     <p align="center">
       <input type="submit" name="button" id="button" value="提交" />

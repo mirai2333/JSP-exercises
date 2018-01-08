@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import table.oldman.Oldman;
-import table.oldman.OldmanHandle;
 
 /**
- * Servlet implementation class OldmanEdit01
+ * Servlet implementation class OldmanEdit02
  */
-@WebServlet("/OldmanEdit01")
-public class OldmanEdit01 extends HttpServlet {
+@WebServlet("/OldmanEdit02")
+public class OldmanEdit02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OldmanEdit01() {
+    public OldmanEdit02() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +29,19 @@ public class OldmanEdit01 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String OMid = request.getParameter("OMid");
-		OldmanHandle oldmanHandle = new OldmanHandle();
+		Oldman oldman = (Oldman) request.getAttribute("Oldman");
+		request.removeAttribute("Oldman");
+		request.setAttribute("OMname", oldman.getOMname());
+		request.setAttribute("OMid", oldman.getOMid());
+		request.setAttribute("OMsex", oldman.getOMsex());
+		request.setAttribute("OMidNum", oldman.getOMidNum());
+		request.setAttribute("OMhome", oldman.getOMhome());
+		request.setAttribute("OMaddr", oldman.getOMaddr());
+		request.setAttribute("OMtel1", oldman.getOMtel1());
+		request.setAttribute("OMtel2", oldman.getOMtel2());
+		request.setAttribute("OMsort", oldman.getOMsort());
 		
-		Oldman oldman = oldmanHandle.searchOldmanByOMid(OMid);
-		
-		if(oldman != null) {
-			request.setAttribute("Oldman", oldman);
-			request.getRequestDispatcher("OldmanEdit02").forward(request, response);
-		}else
-			request.getRequestDispatcher("oldmanEdit01.jsp").forward(request, response);
+		request.getRequestDispatcher("oldmanEdit02.jsp").forward(request, response);
 	}
 
 	/**

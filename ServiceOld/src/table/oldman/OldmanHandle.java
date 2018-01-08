@@ -69,7 +69,7 @@ public class OldmanHandle {
 	
 	public Oldman searchOldmanByOMid(String OMid) {
 		
-		Oldman oldman;
+		Oldman oldman = null;
 		String sql = "SELECT * FROM oldman WHERE OMid='" + OMid + "'";
 		
 		try {
@@ -91,6 +91,7 @@ public class OldmanHandle {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+			oldman = null;
 		}finally {
 			try {
 				stmt.close();
@@ -98,7 +99,6 @@ public class OldmanHandle {
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			oldman = null;
 		}
 		
 		return oldman;
