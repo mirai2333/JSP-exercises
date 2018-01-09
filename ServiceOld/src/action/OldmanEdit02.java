@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.CommonOperation;
 import table.oldman.Oldman;
+import table.oldman.OldmanHandle;
 
 /**
  * Servlet implementation class OldmanEdit02
@@ -28,20 +30,15 @@ public class OldmanEdit02 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Oldman oldman = (Oldman) request.getAttribute("Oldman");
-		request.removeAttribute("Oldman");
-		request.setAttribute("OMname", oldman.getOMname());
-		request.setAttribute("OMid", oldman.getOMid());
-		request.setAttribute("OMsex", oldman.getOMsex());
-		request.setAttribute("OMidNum", oldman.getOMidNum());
-		request.setAttribute("OMhome", oldman.getOMhome());
-		request.setAttribute("OMaddr", oldman.getOMaddr());
-		request.setAttribute("OMtel1", oldman.getOMtel1());
-		request.setAttribute("OMtel2", oldman.getOMtel2());
-		request.setAttribute("OMsort", oldman.getOMsort());
+		CommonOperation commonOperation = new CommonOperation();
+		OldmanHandle oldmanHandle = new OldmanHandle();
+		Oldman oldman = commonOperation.getRequestMessageOfOldman(request);
+		if(oldmanHandle.modifyOldmanMessage(oldman))
+			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
+		else
+			request.getRequestDispatcher("addFail.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("oldmanEdit02.jsp").forward(request, response);
+		
 	}
 
 	/**

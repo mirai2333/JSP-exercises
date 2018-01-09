@@ -91,7 +91,6 @@ public class OldmanHandle {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
-			oldman = null;
 		}finally {
 			try {
 				stmt.close();
@@ -102,5 +101,34 @@ public class OldmanHandle {
 		}
 		
 		return oldman;
+	}
+	
+	public boolean modifyOldmanMessage(Oldman oldman) {
+		String sql;
+		
+		boolean result = false;
+		
+		sql = "update oldman set OMname='"+oldman.getOMname()+"', OMsex='"+oldman.getOMsex()+
+				"' ,OMidNum='"+oldman.getOMidNum()+"' ,OMhome='"+oldman.getOMhome()+"' ,OMaddr='"+
+				oldman.getOMaddr()+"' ,OMtel1='"+oldman.getOMtel1()+"' ,OMtel2='"+oldman.getOMtel2()+
+				"' ,OMsort='"+oldman.getOMsort()+"' where OMid='"+oldman.getOMid()+"'";
+		
+		try {
+			conn = DatabaseConnection.getConnection();
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			result = true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 }

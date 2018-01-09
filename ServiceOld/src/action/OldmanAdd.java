@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.CommonOperation;
 import table.oldman.Oldman;
 import table.oldman.OldmanHandle;
 
@@ -29,37 +30,10 @@ public class OldmanAdd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		Oldman oldman = new Oldman();
-		String temp;
+		CommonOperation commonOperation = new CommonOperation();
 		
-		temp = request.getParameter("OMid");
-		oldman.setOMid(temp);
-		
-		temp = request.getParameter("OMname");
-		oldman.setOMname(temp);
-		
-		temp = request.getParameter("OMsex");
-		oldman.setOMsex(temp);
-		
-		temp = request.getParameter("OMidNum");
-		oldman.setOMidNum(temp);
-		
-		temp = request.getParameter("OMhome");
-		oldman.setOMhome(temp);
-		
-		temp = request.getParameter("OMaddr");
-		oldman.setOMaddr(temp);
-		
-		temp = request.getParameter("OMtel1");
-		oldman.setOMtel1(temp);
-		
-		temp = request.getParameter("OMtel2");
-		oldman.setOMtel2(temp);
-		
-		temp = request.getParameter("OMsort");
-		oldman.setOMsort(temp);
+		oldman = commonOperation.getRequestMessageOfOldman(request);
 		
 		OldmanHandle oldmanHandle = new OldmanHandle();
 		if(oldmanHandle.save(oldman))

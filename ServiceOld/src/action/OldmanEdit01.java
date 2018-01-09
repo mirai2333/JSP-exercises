@@ -37,7 +37,7 @@ public class OldmanEdit01 extends HttpServlet {
 		
 		if(oldman != null) {
 			request.setAttribute("Oldman", oldman);
-			request.getRequestDispatcher("OldmanEdit02").forward(request, response);
+			request.getRequestDispatcher("oldmanEdit02.jsp").forward(request, response);
 		}else
 			request.getRequestDispatcher("oldmanEdit01.jsp").forward(request, response);
 	}
