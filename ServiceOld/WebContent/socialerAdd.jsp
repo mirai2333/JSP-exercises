@@ -20,7 +20,7 @@
 <div id="apDiv1">
   <p align="center">社工信息登记</p>
   <form id="form1" name="form1" method="post" action="">
-    <p>社工编号：<input type="text" name="SRid" id="textfield" /></p>
+    <p>社工编号：<input type="text" name="SRid" id="textfield" value="<%=request.getAttribute("SRid")%>" /></p>
     <p>社工姓名：<input type="text" name="SRname" id="textfield2" /></p>
     <p>社工性别：
       <label><input type="radio" name="SRsex" value="男" id="RadioGroup1_0" />男</label>

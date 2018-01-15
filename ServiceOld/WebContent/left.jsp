@@ -25,7 +25,7 @@
   <div class="AccordionPanel">
     <div class="AccordionPanelTab">社区工作人员管理</div>
     <div class="AccordionPanelContent">
-      <a href="#" target="mainFrame">社工信息登记</a>
+      <a href="SocialerPre" target="mainFrame">社工信息登记</a>
       <br>
       <a href="#" target="mainFrame">社工信息变更</a>
     </div>
