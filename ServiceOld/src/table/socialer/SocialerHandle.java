@@ -31,4 +31,31 @@ public class SocialerHandle {
 		}
 		return null;
 	}
+	
+	public boolean save(Socialer s) {
+		boolean rs = false;
+		
+		String sql = "insert into socialer values ";
+		sql += "('"+s.getSRid()+"','"+s.getSRname()+"','"+s.getSRsex()+"','"+s.getSRidNum()
+		+"','"+s.getSRhome()+"','"+s.getSRSRaddr()+"','"+s.getSRtel()+"','"+s.getSRsort()
+		+"','"+s.getSRsalary()+"','"+s.getSRstarDate()+"','"+s.getSRlevel()+"')";
+		
+		try {
+			conn = DatabaseConnection.getConnection();
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			rs = true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rs;
+	}
 }

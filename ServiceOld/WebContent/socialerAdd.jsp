@@ -19,7 +19,7 @@
 <body>
 <div id="apDiv1">
   <p align="center">社工信息登记</p>
-  <form id="form1" name="form1" method="post" action="">
+  <form id="form1" name="form1" method="post" action="SocialerAdd">
     <p>社工编号：<input type="text" name="SRid" id="textfield" value="<%=request.getAttribute("SRid")%>" /></p>
     <p>社工姓名：<input type="text" name="SRname" id="textfield2" /></p>
     <p>社工性别：
@@ -35,7 +35,7 @@
       <label><input type="radio" name="SRsort" value="义工" id="RadioGroup2_1" />义工</label>
     </p>
     <p>月薪：<input type="text" name="SRsalary" id="textfield7" /></p>
-    <p>就业日期：<input type="text" name="SRstarDate" id="textfield8" /></p>
+    <p>就业日期：<input type="text" name="SRstarDate" id="textfield8" value="<%=request.getAttribute("SRstarDate") %>" /></p>
     <p>星级：<input type="text" name="SRlevel" id="textfield9" /></p>
     <p align="center">
     	<input type="submit" name="button" id="button" value="提交" />
