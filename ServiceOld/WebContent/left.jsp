@@ -27,7 +27,7 @@
     <div class="AccordionPanelContent">
       <a href="SocialerPre" target="mainFrame">社工信息登记</a>
       <br>
-      <a href="#" target="mainFrame">社工信息变更</a>
+      <a href="WebPages/Socialer/socialerEdit01.jsp" target="mainFrame">社工信息变更</a>
     </div>
   </div>
   <div class="AccordionPanel">

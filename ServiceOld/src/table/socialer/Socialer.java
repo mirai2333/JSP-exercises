@@ -30,7 +30,7 @@ public class Socialer {
 	public String getSRsex() {return SRsex;}
 	public String getSRidNum() {return SRidNum;}
 	public String getSRhome() {return SRhome;}
-	public String getSRSRaddr() {return SRaddr;}
+	public String getSRaddr() {return SRaddr;}
 	public String getSRtel() {return SRtel;}
 	public String getSRsort() {return SRsort;}
 	public String getSRsalary() {return SRsalary;}
