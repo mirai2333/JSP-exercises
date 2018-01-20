@@ -33,7 +33,7 @@
   <div class="AccordionPanel">
     <div class="AccordionPanelTab">工单管理</div>
     <div class="AccordionPanelContent">
-      <a href="#" target="mainFrame">工单生成</a>
+      <a href="ServListPre" target="mainFrame">工单生成</a>
       <br>
       <a href="#" target="mainFrame">工单完成</a>
       <br>
