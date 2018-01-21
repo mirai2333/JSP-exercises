@@ -5,12 +5,16 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 
 import table.oldman.Oldman;
+import table.servlist.ServList;
 import table.socialer.Socialer;
 
 public class CommonOperation {
+	
+	private static final String ENCODE = "UTF-8";
+	
 	public Oldman getRequestMessageOfOldman(HttpServletRequest request) {
 		try {
-			request.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding(ENCODE);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +55,7 @@ public class CommonOperation {
 	
 	public Socialer getRequestMessageOfSocialer(HttpServletRequest request) {
 		try {
-			request.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding(ENCODE);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +88,47 @@ public class CommonOperation {
 		socialer.setSRlevel(temp);
 		
 		return socialer;
+	}
+	
+	public ServList getRequestMessageOfServList(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding(ENCODE);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ServList servlist = new ServList();
+		String temp;
+		
+		temp = request.getParameter("SLid");
+		servlist.setSLid(temp);
+		
+		temp = request.getParameter("SRname");
+		servlist.setSRname(temp);
+		
+		temp = request.getParameter("SLstartTime");
+		servlist.setSLstartTime(temp);
+		
+		temp = request.getParameter("SLcloseTime");
+		servlist.setSLcloseTime(temp);
+		
+		temp = request.getParameter("OMname");
+		servlist.setOMname(temp);
+		
+		temp = request.getParameter("SLcontent");
+		servlist.setSLcontent(temp);
+		
+		temp = request.getParameter("SLfee");
+		servlist.setSLfee(temp);
+		
+		temp = request.getParameter("SLfeeOk");
+		servlist.setSLfeeOk(temp);
+		
+		temp = request.getParameter("SLlevel");
+		servlist.setSLlevel(temp);
+		
+		return servlist;
 	}
 	
 }

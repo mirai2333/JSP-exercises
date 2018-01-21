@@ -18,7 +18,7 @@
 <body>
 <div id="apDiv1">
   <p align="center">工单生成</p>
-  <form id="form1" name="form1" method="post" action="">
+  <form id="form1" name="form1" method="post" action="ServListAdd">
     <p>工单编号：<input type="text" name="SLid" id="textfield" value="<%=request.getAttribute("SLid")%>"/></p>
     <p>社工姓名：<input type="text" name="SRname" id="textfield2" /></p>
     <p>服务开始时间：<input type="text" name="SLstartTime" id="textfield3" value="<%=request.getAttribute("SLstartTime")%>"/></p>
