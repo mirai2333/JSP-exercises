@@ -60,4 +60,39 @@ public class ServListHandle {
 		
 		return result;
 	}
+	
+	public ServList searchServListById(String SLid) {
+		ServList servlist = null;
+		String sql = "select * from servlist where SLid="+SLid;
+		
+		try {
+			conn = DatabaseConnection.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				servlist = new ServList();
+				servlist.setSLid(SLid);
+				servlist.setSRname(rs.getString("SRname"));
+				servlist.setOMname(rs.getString("OMname"));
+				servlist.setSLstartTime(rs.getString("SLstartTime"));
+				servlist.setSLcloseTime(rs.getString("SLcloseTime"));
+				servlist.setSLcontent(rs.getString("SLcontent"));
+				servlist.setSLfee(rs.getString("SLfee"));
+				servlist.setSLfeeOk(rs.getString("SLfeeOk"));
+				servlist.setSLlevel(rs.getString("SLlevel"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return servlist;
+	}
 }

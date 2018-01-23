@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.CurrentDate;
+import table.servlist.ServList;
 import table.servlist.ServListHandle;
 
 /**
- * Servlet implementation class ServListPre
+ * Servlet implementation class ServListEdit01
  */
-@WebServlet("/ServListPre")
-public class ServListPre extends HttpServlet {
+@WebServlet("/ServListEdit01")
+public class ServListEdit01 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServListPre() {
+    public ServListEdit01() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +30,15 @@ public class ServListPre extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String SLid = new ServListHandle().MaxServListId();
-		CurrentDate currentdate = new CurrentDate();
+		String SLid = request.getParameter("SLid");
+		ServListHandle servlistHandle = new ServListHandle();
+		ServList servlist = servlistHandle.searchServListById(SLid);
 		
-		if(SLid != null)
-			SLid = String.valueOf(Integer.valueOf(SLid)+1);
-		else
-			SLid = String.valueOf(currentdate.getCurrentDate()) + "001";
-		
-		request.setAttribute("SLid", SLid);
-		request.setAttribute("SLstartTime", new CurrentDate().getCurrentDate());
-		request.getRequestDispatcher("WebPages/ServList/ServListAdd.jsp").forward(request, response);
+		if(servlist != null) {
+			request.setAttribute("servlist", servlist);
+			request.getRequestDispatcher("WebPages/ServList/ServListEdit02.jsp").forward(request, response);
+		}else
+			request.getRequestDispatcher("WebPages/ServList/ServListEdit01.jsp").forward(request, response);
 	}
 
 	/**

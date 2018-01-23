@@ -35,7 +35,7 @@
     <div class="AccordionPanelContent">
       <a href="ServListPre" target="mainFrame">工单生成</a>
       <br>
-      <a href="#" target="mainFrame">工单完成</a>
+      <a href="WebPages/ServList/ServListEdit01.jsp" target="mainFrame">工单完成</a>
       <br>
       <a href="#" target="mainFrame">工单查询</a>
     </div>
