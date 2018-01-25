@@ -95,4 +95,30 @@ public class ServListHandle {
 		
 		return servlist;
 	}
+	
+	public boolean modifyServListMessage(ServList s) {
+		boolean result = false;
+		String sql = "update servlist SRname='"+s.getSRname()+"', SLstartTime='"+s.getSLstartTime()+
+				"', SLcloseTime='"+s.getSLcloseTime()+"', OMname='"+s.getOMname()+"', SLcontent='"
+				+s.getSLcontent()+"', SLfee='"+s.getSLfee()+"', SLfeeOk='"+s.getSLfeeOk()+
+				"', SLlevel='"+s.getSLlevel()+"' where SLid='"+s.getSLid()+"'";
+		
+		try {
+			conn = DatabaseConnection.getConnection();
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			result = true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 }

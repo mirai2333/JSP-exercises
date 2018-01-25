@@ -19,7 +19,7 @@
 <body>
 <div id="apDiv1">
   <p align="center">工单完成</p>
-  <form id="form1" name="form1" method="post" action="ServListAdd">
+  <form id="form1" name="form1" method="post" action="ServListEdit02">
   <% 
   	ServList s = (ServList)request.getAttribute("servlist");
   	String feeOk = s.getSLfeeOk();
