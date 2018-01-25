@@ -71,16 +71,7 @@ public class ServListHandle {
 			rs = stmt.executeQuery(sql);
 			
 			if(rs.next()){
-				servlist = new ServList();
-				servlist.setSLid(SLid);
-				servlist.setSRname(rs.getString("SRname"));
-				servlist.setOMname(rs.getString("OMname"));
-				servlist.setSLstartTime(rs.getString("SLstartTime"));
-				servlist.setSLcloseTime(rs.getString("SLcloseTime"));
-				servlist.setSLcontent(rs.getString("SLcontent"));
-				servlist.setSLfee(rs.getString("SLfee"));
-				servlist.setSLfeeOk(rs.getString("SLfeeOk"));
-				servlist.setSLlevel(rs.getString("SLlevel"));
+				servlist = getServlistFromResultSet(rs);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -98,7 +89,7 @@ public class ServListHandle {
 	
 	public boolean modifyServListMessage(ServList s) {
 		boolean result = false;
-		String sql = "update servlist SRname='"+s.getSRname()+"', SLstartTime='"+s.getSLstartTime()+
+		String sql = "update servlist set SRname='"+s.getSRname()+"', SLstartTime='"+s.getSLstartTime()+
 				"', SLcloseTime='"+s.getSLcloseTime()+"', OMname='"+s.getOMname()+"', SLcontent='"
 				+s.getSLcontent()+"', SLfee='"+s.getSLfee()+"', SLfeeOk='"+s.getSLfeeOk()+
 				"', SLlevel='"+s.getSLlevel()+"' where SLid='"+s.getSLid()+"'";
@@ -121,4 +112,52 @@ public class ServListHandle {
 		
 		return result;
 	}
+
+	public ServList getServlistFromResultSet(ResultSet rs) {
+		ServList servlist = new ServList();
+		try {
+			servlist.setSLid(rs.getString("SLid"));
+			servlist.setSRname(rs.getString("SRname"));
+			servlist.setOMname(rs.getString("OMname"));
+			servlist.setSLstartTime(rs.getString("SLstartTime"));
+			servlist.setSLcloseTime(rs.getString("SLcloseTime"));
+			servlist.setSLcontent(rs.getString("SLcontent"));
+			servlist.setSLfee(rs.getString("SLfee"));
+			servlist.setSLfeeOk(rs.getString("SLfeeOk"));
+			servlist.setSLlevel(rs.getString("SLlevel"));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return servlist;
+	}
+	
+	public ServList[] queryByConditions(String where) {
+		ServList[] servlists = null;
+		int rows = 0;
+		String sql = "select * from servlist where "+where;
+		try {
+			conn = DatabaseConnection.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.last()) {
+				rows = rs.getRow();
+				servlists = new ServList[rows];
+				rs.beforeFirst();
+				int i = 0;
+				while(rs.next()) {servlists[i++] = getServlistFromResultSet(rs);}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return servlists;
+	}
+	
 }

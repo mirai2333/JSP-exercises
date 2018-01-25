@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import table.servlist.ServList;
+import table.servlist.ServListHandle;
+
 /**
  * Servlet implementation class ServListInpuire
  */
-@WebServlet("/ServListInpuire")
+@WebServlet("/ServListInquire")
 public class ServListInquire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,13 +30,20 @@ public class ServListInquire extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		String SRname = request.getParameter("SRname");
 		String OMname = request.getParameter("OMname");
 		String where = "1=1";
-		if(SRname!=null)
+		if(SRname!="")
 			where += " and SRname='"+SRname+"'";
-		if(OMname!=null)
+		if(OMname!="")
 			where += " and OMname='"+OMname+"'";
+		ServListHandle servlisthandle = new ServListHandle();
+		ServList[] servlists = servlisthandle.queryByConditions(where);
+		
+		if(servlists != null)
+			request.setAttribute("servlists", servlists);
+		request.getRequestDispatcher("WebPages/ServList/ServListInquire.jsp").forward(request, response);
 	}
 
 	/**

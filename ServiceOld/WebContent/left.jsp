@@ -37,7 +37,7 @@
       <br>
       <a href="WebPages/ServList/ServListEdit01.jsp" target="mainFrame">工单完成</a>
       <br>
-      <a href="#" target="mainFrame">工单查询</a>
+      <a href="WebPages/ServList/ServListInquire.jsp" target="mainFrame">工单查询</a>
     </div>
   </div>
   <div class="AccordionPanel">
