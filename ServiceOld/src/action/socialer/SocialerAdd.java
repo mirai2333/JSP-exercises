@@ -1,4 +1,4 @@
-package action;
+package action.socialer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import table.oldman.Oldman;
-import table.oldman.OldmanHandle;
+import common.CommonOperation;
+import table.socialer.Socialer;
+import table.socialer.SocialerHandle;
 
 /**
- * Servlet implementation class OldmanEdit01
+ * Servlet implementation class SocialerAdd
  */
-@WebServlet("/OldmanEdit01")
-public class OldmanEdit01 extends HttpServlet {
+@WebServlet("/SocialerAdd")
+public class SocialerAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OldmanEdit01() {
+    public SocialerAdd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +31,16 @@ public class OldmanEdit01 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String OMid = request.getParameter("OMid");
-		OldmanHandle oldmanHandle = new OldmanHandle();
+		//获取提交信息到socialer对象
+		CommonOperation commonOperation = new CommonOperation();
+		Socialer socialer = commonOperation.getRequestMessageOfSocialer(request);
+		//插入到数据库
+		SocialerHandle socialerHandle = new SocialerHandle();
+		if(socialerHandle.save(socialer))
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
+		else
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 		
-		Oldman oldman = oldmanHandle.searchOldmanByOMid(OMid);
-		
-		if(oldman != null) {
-			request.setAttribute("Oldman", oldman);
-			request.getRequestDispatcher("oldmanEdit02.jsp").forward(request, response);
-		}else
-			request.getRequestDispatcher("oldmanEdit01.jsp").forward(request, response);
 	}
 
 	/**

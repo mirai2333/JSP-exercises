@@ -36,9 +36,9 @@ public class ServListEdit02 extends HttpServlet {
 		ServListHandle servlisthandle = new ServListHandle();
 		
 		if(servlisthandle.modifyServListMessage(servlist))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
 		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 	}
 
 	/**

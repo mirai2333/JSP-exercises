@@ -36,9 +36,9 @@ public class SocialerEdit02 extends HttpServlet {
 		SocialerHandle socialerHandle = new SocialerHandle();
 		
 		if(socialerHandle.modifySocialerMessage(socialer))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
 		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 	}
 
 	/**

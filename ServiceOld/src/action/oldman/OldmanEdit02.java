@@ -1,4 +1,4 @@
-package action;
+package action.oldman;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.CurrentDate;
-import table.socialer.SocialerHandle;
+import common.CommonOperation;
+import table.oldman.Oldman;
+import table.oldman.OldmanHandle;
 
 /**
- * Servlet implementation class SocialerPre
+ * Servlet implementation class OldmanEdit02
  */
-@WebServlet("/SocialerPre")
-public class SocialerPre extends HttpServlet {
+@WebServlet("/OldmanEdit02")
+public class OldmanEdit02 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SocialerPre() {
+    public OldmanEdit02() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +30,15 @@ public class SocialerPre extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		SocialerHandle socialerHandle = new SocialerHandle();
-		CurrentDate CurrentDate = new CurrentDate();
-		String SRid = socialerHandle.MaxSocialerId();
-		int SRstarDate = CurrentDate.getCurrentDate();
-		
-		//此处需要一个返回社工最大编号的函数
-		if(SRid != null) 
-			SRid = String.valueOf(Integer.valueOf(SRid)+1);
+		CommonOperation commonOperation = new CommonOperation();
+		OldmanHandle oldmanHandle = new OldmanHandle();
+		Oldman oldman = commonOperation.getRequestMessageOfOldman(request);
+		if(oldmanHandle.modifyOldmanMessage(oldman))
+			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
 		else
-			SRid = "1";
+			request.getRequestDispatcher("addFail.jsp").forward(request, response);
 		
-		request.setAttribute("SRid", SRid);
-		request.setAttribute("SRstarDate", SRstarDate);
-		request.getRequestDispatcher("socialerAdd.jsp").forward(request, response);
+		
 	}
 
 	/**

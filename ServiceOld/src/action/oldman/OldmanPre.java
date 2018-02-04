@@ -1,4 +1,4 @@
-package action;
+package action.oldman;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.CommonOperation;
-import table.socialer.Socialer;
-import table.socialer.SocialerHandle;
+import table.oldman.OldmanHandle;
 
 /**
- * Servlet implementation class SocialerAdd
+ * Servlet implementation class OldmanPre
  */
-@WebServlet("/SocialerAdd")
-public class SocialerAdd extends HttpServlet {
+@WebServlet("/OldmanPre")
+public class OldmanPre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SocialerAdd() {
+    public OldmanPre() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +29,23 @@ public class SocialerAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//获取提交信息到socialer对象
-		CommonOperation commonOperation = new CommonOperation();
-		Socialer socialer = commonOperation.getRequestMessageOfSocialer(request);
-		//插入到数据库
-		SocialerHandle socialerHandle = new SocialerHandle();
-		if(socialerHandle.save(socialer))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
-		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
 		
+		int oldmanid = 0;
+		String OMid;
+		
+		OldmanHandle oldmanHandle = new OldmanHandle();
+		OMid = oldmanHandle.maxOldmanId();
+		
+		if(OMid != null) {
+			oldmanid = Integer.parseInt(OMid) + 1;
+		}else {
+			oldmanid = 108*10000 + 1;
+		}
+		
+		OMid = Integer.toString(oldmanid);
+		
+		request.setAttribute("OMid", OMid);
+		request.getRequestDispatcher("WebPages/Oldman/oldmanAdd.jsp").forward(request, response);
 	}
 
 	/**

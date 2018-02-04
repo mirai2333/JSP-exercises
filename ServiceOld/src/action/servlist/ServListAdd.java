@@ -38,9 +38,9 @@ public class ServListAdd extends HttpServlet {
 		//将servlist添加到数据库
 		ServListHandle servlistHandle = new ServListHandle();
 		if(servlistHandle.save(servList))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
 		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 		
 	}
 

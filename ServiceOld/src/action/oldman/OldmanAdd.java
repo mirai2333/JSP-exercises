@@ -1,4 +1,4 @@
-package action;
+package action.oldman;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.CommonOperation;
+import table.oldman.Oldman;
 import table.oldman.OldmanHandle;
 
 /**
- * Servlet implementation class OldmanPre
+ * Servlet implementation class OldmanAdd
  */
-@WebServlet("/OldmanPre")
-public class OldmanPre extends HttpServlet {
+@WebServlet("/OldmanAdd")
+public class OldmanAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OldmanPre() {
+    public OldmanAdd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,24 +30,16 @@ public class OldmanPre extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		Oldman oldman = new Oldman();
+		CommonOperation commonOperation = new CommonOperation();
 		
-		int oldmanid = 0;
-		String OMid;
+		oldman = commonOperation.getRequestMessageOfOldman(request);
 		
 		OldmanHandle oldmanHandle = new OldmanHandle();
-		OMid = oldmanHandle.maxOldmanId();
-		
-		if(OMid != null) {
-			oldmanid = Integer.parseInt(OMid) + 1;
-		}else {
-			oldmanid = 108*10000 + 1;
-		}
-		
-		OMid = Integer.toString(oldmanid);
-		
-		request.setAttribute("OMid", OMid);
-		request.getRequestDispatcher("oldmanAdd.jsp").forward(request, response);
+		if(oldmanHandle.save(oldman))
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
+		else
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 	}
 
 	/**

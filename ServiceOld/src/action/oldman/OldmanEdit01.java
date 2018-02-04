@@ -1,4 +1,4 @@
-package action;
+package action.oldman;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.CommonOperation;
 import table.oldman.Oldman;
 import table.oldman.OldmanHandle;
 
 /**
- * Servlet implementation class OldmanAdd
+ * Servlet implementation class OldmanEdit01
  */
-@WebServlet("/OldmanAdd")
-public class OldmanAdd extends HttpServlet {
+@WebServlet("/OldmanEdit01")
+public class OldmanEdit01 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OldmanAdd() {
+    public OldmanEdit01() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +29,17 @@ public class OldmanAdd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Oldman oldman = new Oldman();
-		CommonOperation commonOperation = new CommonOperation();
-		
-		oldman = commonOperation.getRequestMessageOfOldman(request);
-		
+		// TODO Auto-generated method stub
+		String OMid = request.getParameter("OMid");
 		OldmanHandle oldmanHandle = new OldmanHandle();
-		if(oldmanHandle.save(oldman))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
-		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
+		
+		Oldman oldman = oldmanHandle.searchOldmanByOMid(OMid);
+		
+		if(oldman != null) {
+			request.setAttribute("Oldman", oldman);
+			request.getRequestDispatcher("WebPages/Oldman/oldmanEdit02.jsp").forward(request, response);
+		}else
+			request.getRequestDispatcher("WebPages/Oldman/oldmanEdit01.jsp").forward(request, response);
 	}
 
 	/**

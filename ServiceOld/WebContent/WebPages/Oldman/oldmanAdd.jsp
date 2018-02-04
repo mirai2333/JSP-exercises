@@ -19,7 +19,7 @@
 <body>
 <div id="apDiv1">
   <h2 align="center">老年客户信息登记</h2>
-  <form id="form1" name="form1" method="post" action="OldmanAdd">
+  <form id="form1" name="form1" method="post" action="<%=request.getContextPath()%>/OldmanAdd">
     <p>老人编号：<input type="text" name="OMid" id="textfield" value="<%=request.getAttribute("OMid")%>" /></p>
     <p>老人姓名：<input type="text" name="OMname" id="textfield2" /></p>
     <p> 老人性别：

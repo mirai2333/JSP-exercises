@@ -19,7 +19,7 @@
     <div class="AccordionPanelContent">
       <a href="OldmanPre" target="mainFrame">客户信息登记</a>
       <br>
-      <a href="oldmanEdit01.jsp" target="mainFrame">客户信息变更</a>
+      <a href="WebPages/Oldman/oldmanEdit01.jsp" target="mainFrame">客户信息变更</a>
     </div>
   </div>
   <div class="AccordionPanel">

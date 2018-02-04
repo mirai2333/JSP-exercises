@@ -20,7 +20,7 @@
 <body>
 <div id="apDiv1">
   <p align="center">老年客户信息变更</p>
-  <form id="form1" name="form1" method="post" action="OldmanEdit01">
+  <form id="form1" name="form1" method="post" action="<%=request.getContextPath()%>/OldmanEdit01">
     <p>老人编号：<input type="text" name="OMid" id="textfield" /></p>
     <p align="center"><input type="submit" name="button" id="button" value="提交" /></p>
   </form>

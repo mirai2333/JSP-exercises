@@ -33,8 +33,10 @@ public class ServListPre extends HttpServlet {
 		String SLid = new ServListHandle().MaxServListId();
 		CurrentDate currentdate = new CurrentDate();
 		
+		int sss = Integer.parseInt("2018011501");
+		
 		if(SLid != null)
-			SLid = String.valueOf(Integer.valueOf(SLid)+1);
+			SLid = String.valueOf(Integer.parseInt(SLid)+1);
 		else
 			SLid = String.valueOf(currentdate.getCurrentDate()) + "001";
 		
