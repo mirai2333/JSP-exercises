@@ -34,9 +34,9 @@ public class OldmanEdit02 extends HttpServlet {
 		OldmanHandle oldmanHandle = new OldmanHandle();
 		Oldman oldman = commonOperation.getRequestMessageOfOldman(request);
 		if(oldmanHandle.modifyOldmanMessage(oldman))
-			request.getRequestDispatcher("addSuccess.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addSuccess.jsp").forward(request, response);
 		else
-			request.getRequestDispatcher("addFail.jsp").forward(request, response);
+			request.getRequestDispatcher("WebPages/ResultPages/addFail.jsp").forward(request, response);
 		
 		
 	}
