@@ -41,22 +41,6 @@
     </div>
   </div>
   <div class="AccordionPanel">
-    <div class="AccordionPanelTab">信息查询与统计</div>
-    <div class="AccordionPanelContent">
-      <a href="#" target="mainFrame">客户费用清单</a>
-      <br>
-      <a href="#" target="mainFrame">其他查询</a>
-    </div>
-  </div>
-  <div class="AccordionPanel">
-    <div class="AccordionPanelTab">信息发布与维护</div>
-    <div class="AccordionPanelContent">
-      <a href="#" target="mainFrame">信息发布</a>
-      <br>
-      <a href="#" target="mainFrame">信息维护</a>
-    </div>
-  </div>
-  <div class="AccordionPanel">
     <div class="AccordionPanelTab">系统管理</div>
     <div class="AccordionPanelContent">
       <a href="Logout?logoutId=1">退出系统</a>
